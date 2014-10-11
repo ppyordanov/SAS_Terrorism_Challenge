@@ -9,7 +9,6 @@ import org.junit.Test;
 
 
 public class CrawlerTest {
-
 	
 	@Test
 	public void test1() throws IOException, JSONException{
