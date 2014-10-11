@@ -2,8 +2,8 @@ package graph;
 
 public class EntityPair implements Comparable<EntityPair>{
 
-	private Entity entity;
-	private double similarity;
+	public Entity entity;
+	public double similarity;
 	
 	public EntityPair(Entity e, double similarity){
 		this.entity = e;

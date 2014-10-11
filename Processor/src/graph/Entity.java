@@ -123,7 +123,11 @@ public class Entity {
 	@Override
 	public String toString(){
 		String s = "";
-		s += id + " " + page + " " + Arrays.toString(keywords.toArray());
+		s += id + " " + page + " " + Arrays.toString(keywords.toArray()) + " {";
+		for (EntityPair p : similarPages) {
+			s += p.similarity + " <- " + p.entity.page + "\n";
+		}
+		s += "}";
 		return s;
 	}
 	
