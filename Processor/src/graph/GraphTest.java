@@ -20,9 +20,7 @@ public class GraphTest {
 		ArrayList<Entity> test1 = new ArrayList<Entity>();
 		ArrayList<String> test2 = new ArrayList<String>();
 		
-		testE = new Entity("id", "page", test1, test2 , 2.0);
-		test1.add(testE);
-		test2.add("");
+		testE = new Entity("id", "page", test1, test1 , test2, 2.0);
 	}
 	
 
@@ -61,5 +59,32 @@ public class GraphTest {
 		assertEquals(test.getEntity("random"), null);
 		
 	}
+	
+	@Test
+	public void addEdgeSucessTest(){
+		
+		Entity testE2 = testE;
+		testE2.setId("random");
+	
+		test.addData(testE2);
+		
+		test.addEdge(testE, testE2);
+		assertEquals(test.connected(testE, testE2), true);
+		
+	}
 
+	
+	
+	
+	@Test
+	public void getSizeTest(){
+		
+		
+		
+		assertEquals(test.getSize(), 0);
+		
+	}
+
+
+	
 }

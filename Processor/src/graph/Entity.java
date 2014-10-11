@@ -17,13 +17,17 @@ public class Entity {
 		keywords = new ArrayList<String>();
 		weight = 0;
 		id = "";
+		backlinkEntities = new ArrayList<Entity>();
+		forwardlinkEntities = new ArrayList<Entity>();
 	}
 	
-	public Entity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
+	public Entity(String id, String page, ArrayList<Entity> forwardlinkEntities,ArrayList<Entity> backlinkEntities, ArrayList<String> keywords, double weight ){
 		this.id = id;
 		this.page = page;
 		this.keywords = keywords;
 		this.weight = weight;
+		this.backlinkEntities = new ArrayList<Entity>();
+		this.forwardlinkEntities = new ArrayList<Entity>();
 		
 	}
 	
