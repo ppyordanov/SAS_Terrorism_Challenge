@@ -1,3 +1,4 @@
+package graph;
 import java.util.ArrayList;
 
 
@@ -5,23 +6,6 @@ public class Entity {
 
 	private String id;
 	private String page;
-	public ArrayList<Entity> getBacklinkEntities() {
-		return backlinkEntities;
-	}
-
-	public void setBacklinkEntities(ArrayList<Entity> backlinkEntities) {
-		this.backlinkEntities = backlinkEntities;
-	}
-
-	public ArrayList<Entity> getForwardlinkEntities() {
-		return forwardlinkEntities;
-	}
-
-	public void setForwardlinkEntities(ArrayList<Entity> forwardlinkEntities) {
-		this.forwardlinkEntities = forwardlinkEntities;
-	}
-
-
 	private ArrayList<Entity> backlinkEntities;
 	private ArrayList<Entity> forwardlinkEntities;
 	private ArrayList<String> keywords;
@@ -62,6 +46,22 @@ public class Entity {
 		this.weight -= e.getWeight();
 	}
 
+
+	public ArrayList<Entity> getBacklinkEntities() {
+		return backlinkEntities;
+	}
+
+	public void setBacklinkEntities(ArrayList<Entity> backlinkEntities) {
+		this.backlinkEntities = backlinkEntities;
+	}
+
+	public ArrayList<Entity> getForwardlinkEntities() {
+		return forwardlinkEntities;
+	}
+
+	public void setForwardlinkEntities(ArrayList<Entity> forwardlinkEntities) {
+		this.forwardlinkEntities = forwardlinkEntities;
+	}
 
 	public String getPage() {
 		return page;
