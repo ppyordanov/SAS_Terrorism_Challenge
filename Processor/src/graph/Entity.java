@@ -1,5 +1,6 @@
 package graph;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Entity {
@@ -87,8 +88,12 @@ public class Entity {
 	}
 	
 	
-	
-	
+	@Override
+	public String toString(){
+		String s = "";
+		s += id + " " + page + " " + Arrays.toString(keywords.toArray());
+		return s;
+	}
 	
 	
 }
