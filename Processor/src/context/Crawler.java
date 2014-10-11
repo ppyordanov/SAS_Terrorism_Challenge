@@ -14,8 +14,6 @@ public class Crawler {
 
 	public static ArrayList<String> getWikiResults(String keyword)
 			throws IOException, JSONException {
-		System.out.println(">"+keyword);
-		ArrayList<String> results = new ArrayList<String>();
 		ArrayList<String> links = new ArrayList<String>();
 		HttpURLConnection connection = null;
 		URL url = new URL(
@@ -37,7 +35,7 @@ public class Crawler {
 			links.add((String) searchResult.get("title"));
 		}
 		connection.disconnect();
-		return results;
+		return links;
 	}
 
 }
