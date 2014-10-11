@@ -5,15 +5,14 @@ public class Entity {
 
 	private String id;
 	private String page;
-	private ArrayList<Entity> relevantEntities;
 	private ArrayList<Entity> backlinkEntities;
+	private ArrayList<Entity> forwardlinkEntities;
 	private ArrayList<String> keywords;
 	private double weight;
 	
 	
 	public Entity(){
 		page = "";
-		relevantEntities = new ArrayList<Entity>();
 		keywords = new ArrayList<String>();
 		weight = 0;
 		id = "";
@@ -22,11 +21,28 @@ public class Entity {
 	public Entity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
 		this.id = id;
 		this.page = page;
-		this.relevantEntities = relevantEntities;
 		this.keywords = keywords;
 		this.weight = weight;
 		
+	}
+	
+	public void addForwardLink(Entity e){
+		this.forwardlinkEntities.add(e);
+	}
+	
+	public void removeForwardLink(Entity e){
+		this.forwardlinkEntities.remove(e);
+	}
+	
+	public void addBackLink(Entity e){
+		this.backlinkEntities.add(e);
+		this.weight += e.getWeight();
+	}
+	
+	public void removeBackLink(Entity e ){
 		
+		this.backlinkEntities.remove(e);
+		this.weight -= e.getWeight();
 	}
 
 
@@ -37,16 +53,6 @@ public class Entity {
 
 	public void setPage(String page) {
 		this.page = page;
-	}
-
-
-	public ArrayList<Entity> getRelevantEntities() {
-		return relevantEntities;
-	}
-
-
-	public void setRelevantEntities(ArrayList<Entity> relevantEntities) {
-		this.relevantEntities = relevantEntities;
 	}
 
 
