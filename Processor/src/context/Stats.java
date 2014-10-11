@@ -11,7 +11,7 @@ public class Stats {
 		TreeSet<String> union = new TreeSet<String>(s1);
 		union.addAll(s2);
 		System.out.println("union is "+union.size());
-		return intersection.size()*1.0/union.size();
+		return union.size() == 0 ? 0 : intersection.size()*1.0/union.size();
 	}
 	
 	

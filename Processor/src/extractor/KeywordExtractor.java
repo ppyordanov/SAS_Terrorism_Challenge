@@ -216,10 +216,10 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 		double thisLel = 0;
 		double otherLel = 0;
 		for (Entry<String, Integer> e : this.freqCount.get(eventId).entrySet()) {
-			if (e.getValue() <= 1) continue;
+			if (e.getValue() <= 0) continue;
 			thisLel += e.getValue() * e.getValue();
 			Integer otherFreq = other.get(e.getKey());
-			if (otherFreq == null || otherFreq <= 1) continue;
+			if (otherFreq == null || otherFreq <= 0) continue;
 			otherLel += otherFreq * otherFreq;
 			sim += otherFreq * e.getValue();
 		}

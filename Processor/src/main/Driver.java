@@ -20,8 +20,6 @@ public class Driver {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Wiki wiki = new Wiki();
-		System.out.println(Arrays.toString(wiki
-				.getCategories("Sterling Hall bombing")));
 		KeywordExtractor keywordExtractor = new KeywordExtractor(
 				"gtd_tabs.csv");
 		keywordExtractor.extractAllEvents();
@@ -41,6 +39,7 @@ public class Driver {
 			if (res.size() == 0)
 				continue;
 			String pageTitle = res.get(0);
+			System.err.println(id);
 			Entity entity = Entity.getEntity(id, pageTitle,
 					new ArrayList<Entity>(), keyword, 0.0);
 			String[] categories = wiki.getCategories(pageTitle);
@@ -50,10 +49,10 @@ public class Driver {
 			graph.addData(entity);
 
 			ArrayList<String> neighbours = new ArrayList<String>();
-			String[] before = wiki
-					.whatLinksHere(pageTitle, Wiki.MAIN_NAMESPACE);
-			for (String s : before)
-				neighbours.add(s);
+//			String[] before = wiki
+//					.whatLinksHere(pageTitle, Wiki.MAIN_NAMESPACE);
+//			for (String s : before)
+//				neighbours.add(s);
 			String[] after = wiki.getLinksOnPage(pageTitle);
 			for (String s : after)
 				neighbours.add(s);
@@ -65,17 +64,21 @@ public class Driver {
 					for (String s1 : c)
 						e.addCategory(s1);
 				// Weight = Jackard + cos similarity
-				entity.addSimilarPage(new EntityPair(e, Stats.calculateJacard(
+				entity.addSimilarPage(new EntityPair(e, 
+						Stats.calculateJacard(
 						entity.getCategories(), e.getCategories())
-						+ keywordExtractor.getCosineSimilarity(id,
-								Crawler.getArticleText(pageTitle))));
+						+
+						keywordExtractor.getCosineSimilarity(id,
+								Crawler.getArticleText(s))*0.17
+						));
+				if (++count >= 125) break;
 			}
 			System.out.println(count);
-			if (++count >= 20)
+			if (++count >= 1)
 				break;
 		}
 
-		System.out.println(graph.getEntity("197001030001"));
+		System.out.println(graph.getEntity("197001120001"));
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -40,6 +41,25 @@ public class Crawler {
 	}
 	
 	public static String getArticleText(String pageTitle) throws IOException {
-		return Jsoup.parse((new Wiki()).getRenderedText(pageTitle)).text();
+		String title = "";
+		for (String word : pageTitle.split(" ")) {
+			title += "_" + word;
+		}
+		URL url = new URL("http://en.wikipedia.org/wiki/" + title.substring(1));
+		URLConnection connection = null;
+		String text = "";
+		try {
+		  connection =  url.openConnection();
+		  BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			for (String line = br.readLine(); line != null; line = br.readLine()) {
+				text += line;
+			}
+			System.out.println("Done with " + url.getPath());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return Jsoup.parse(text).text();
+//		return Jsoup.parse((new Wiki()).getRenderedText(pageTitle)).text();
 	}
 }
