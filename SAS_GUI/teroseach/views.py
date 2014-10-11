@@ -7,7 +7,10 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse("KURAAAACCC")
 
-
 def search(request):
     context = RequestContext(request)
     return render_to_response('search.html', context)
+	
+def about(request):
+    context = RequestContext(request)
+    return render_to_response('about.html', context)
