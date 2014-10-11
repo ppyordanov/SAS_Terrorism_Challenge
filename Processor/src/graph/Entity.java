@@ -1,6 +1,7 @@
 package graph;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeSet;
 
 
 public class Entity {
@@ -10,6 +11,7 @@ public class Entity {
 	private ArrayList<Entity> backlinkEntities;
 	private ArrayList<Entity> forwardlinkEntities;
 	private ArrayList<String> keywords;
+	private TreeSet<String> categoies;
 	private double weight;
 	
 	
@@ -18,6 +20,7 @@ public class Entity {
 		keywords = new ArrayList<String>();
 		weight = 0;
 		id = "";
+		this.categoies = new TreeSet<String>();
 	}
 	
 	public Entity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
@@ -25,7 +28,16 @@ public class Entity {
 		this.page = page;
 		this.keywords = keywords;
 		this.weight = weight;
+		this.categoies = new TreeSet<String>();
 		
+	}
+	
+	public void addCategory(String category){
+		categoies.add(category);
+	}
+	
+	public TreeSet<String> getCategories(){
+		return categoies;
 	}
 	
 	public void addForwardLink(Entity e){

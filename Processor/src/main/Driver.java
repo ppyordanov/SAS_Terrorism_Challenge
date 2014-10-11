@@ -17,15 +17,8 @@ public class Driver {
 	
 	private static Graph graph;
 	
-	public static void test() throws IOException{
-		Wiki wiki = new Wiki();
-		System.out.println(Arrays.toString(wiki.getLinksOnPage("Sterling Hall bombing")));
-	}
-
 	public static void main(String[] args) throws IOException, JSONException{
-		test();
-		System.exit(1);
-		
+		Wiki wiki = new Wiki();
 		KeywordExtractor keywordExtractor = new KeywordExtractor("globalterrorismdb_0814dist.txt");
 		keywordExtractor.extractAllEvents();
 		graph = new Graph();
@@ -41,8 +34,13 @@ public class Driver {
 			ArrayList<String> res = Crawler.getWikiResults(query);
 			String id = keyword.get(0);
 			if(res.size()==0) continue;
-			Entity e = new Entity(id, res.get(0), new ArrayList<Entity>(), keyword, 0.0);
-			graph.addData(e);
+			String pageTitle = res.get(0);
+			Entity entity = new Entity(id, pageTitle, new ArrayList<Entity>(), keyword, 0.0);
+			String[] categories = wiki.getCategories(pageTitle);
+			if(categories!=null && categories.length > 0)
+				for(String category: categories)
+					entity.addCategory(category);
+			graph.addData(entity);
 			System.out.println(c);
 			if(++c>=20) break;
 		}
