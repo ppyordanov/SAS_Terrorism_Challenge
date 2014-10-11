@@ -14,11 +14,12 @@ import java.util.ArrayList;
  */
 public class TableBuilder {
 
-    private static final String DATA_FILE = "data/globalterrorismdb_0814dist.txt";
+    private static final String DATA_FILE = "data/cleared_data.csv";
     private static final String TABLE_NAME = "event";
 
     public static void main(String argc[]) throws IOException, SQLException {
         populateTables();
+
     }
 
     public static void buildTables() throws SQLException, IOException {
