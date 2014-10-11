@@ -29,7 +29,6 @@ public class KeywordExtractor implements Iterable<ArrayList<String>>{
 	
 	public KeywordExtractor(String filename) {
 		try {
-			System.out.println(filename);
 			scanner = new BufferedReader(new FileReader(filename));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
