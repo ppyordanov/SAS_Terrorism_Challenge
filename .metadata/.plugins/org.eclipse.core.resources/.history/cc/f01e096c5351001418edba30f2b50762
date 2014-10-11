@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block page_scripts %}
+
+{% endblock %}
+{% block body_block %}
+<div class="main-panel">
+	<input type="text" id="txt_search" class="txt_search" />
+</div>
+{% endblock %}

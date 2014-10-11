@@ -1,0 +1,50 @@
+-- VERSION_3
+-- START DISKCACHE
+C:\Users\antonbelev\Desktop\GUHack\.metadata\.plugins\org.eclipse.core.resources\.projects\SAS_GUI\com.python.pydev.analysis\v1_indexcache
+.v1_indexcache
+teroseach.migrations.__init__|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\migrations\__init__.py
+SAS_GUI.__init__|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\__init__.py
+teroseach.admin|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\admin.py
+teroseach.tests|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\tests.py
+SAS_GUI.wsgi|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\wsgi.py
+SAS_GUI.urls|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\urls.py
+teroseach.views|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\views.py
+teroseach.models|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\models.py
+manage|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\manage.py
+SAS_GUI.settings|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\settings.py
+teroseach.__init__|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\__init__.py
+-- END DISKCACHE
+-- START DICTIONARY
+4
+2=SAS_GUI.wsgi
+4=SAS_GUI.urls
+3=teroseach.views
+1=SAS_GUI.settings
+-- END DICTIONARY
+-- START TREE 1
+21
+all|1|ALLOWED_HOSTS!11@
+app|1|application!19@
+bas|1|BASE_DIR!11@
+dat|1|DATABASES!11@
+deb|1|DEBUG!11@
+ind|1|index!26@
+ins|1|INSTALLED_APPS!11@
+lan|1|LANGUAGE_CODE!11@
+med|1|MEDIA_URL!11@
+mid|1|MIDDLEWARE_CLASSES!11@
+pro|1|PROJECT_PATH!11@
+roo|1|ROOT_URLCONF!11@
+sea|1|search!26@
+sec|1|SECRET_KEY!11@
+set|1|SETTINGS_DIR!11@
+sta|4|STATIC_ROOT!11@STATICFILES_DIRS!11@STATIC_PATH!11@STATIC_URL!11@
+tem|3|TEMPLATE_DEBUG!11@TEMPLATE_PATH!11@TEMPLATE_DIRS!11@
+tim|1|TIME_ZONE!11@
+url|1|urlpatterns!35@
+use|3|USE_I18N!11@USE_L10N!11@USE_TZ!11@
+wsg|1|WSGI_APPLICATION!11@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

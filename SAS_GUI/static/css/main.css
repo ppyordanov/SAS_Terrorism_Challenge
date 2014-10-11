@@ -1,0 +1,13 @@
+body, html
+{
+padding-top: 80px;
+height: 100%;
+}
+.clear
+{
+clear: both !important;
+}
+.center
+{
+text-align: center;
+}
