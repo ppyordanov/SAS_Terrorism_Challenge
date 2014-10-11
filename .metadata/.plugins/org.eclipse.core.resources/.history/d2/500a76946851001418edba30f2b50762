@@ -6,6 +6,6 @@
 {% block body_block %}
 <div class="main-panel">
 	<input type="text" id="txt_search" class="txt_search" />
-	<input type="button" id="search" class="btn_search btn-lg btn btn-primary" value="Search" />
+	<input type="button" id="search" class="btn_search btn btn-primary" value="Search" />
 </div>
 {% endblock %}

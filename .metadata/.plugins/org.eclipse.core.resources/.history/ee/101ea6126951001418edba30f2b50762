@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_scripts %}
+
+{% endblock %}
+{% block body_block %}
+<div class="main-panel">
+	
+	<div class="input-group">
+      <span class="input-group-btn">
+        <input type="button" id="search" class="btn_search btn-lg btn btn-primary" value="Search" />
+      </span>
+      <input type="text" id="txt_search" class="txt_search" />
+    </div>
+</div>
+{% endblock %}
