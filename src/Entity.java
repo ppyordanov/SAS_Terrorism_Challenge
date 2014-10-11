@@ -46,6 +46,22 @@ public class Entity {
 	}
 
 
+	public ArrayList<Entity> getBacklinkEntities() {
+		return backlinkEntities;
+	}
+
+	public void setBacklinkEntities(ArrayList<Entity> backlinkEntities) {
+		this.backlinkEntities = backlinkEntities;
+	}
+
+	public ArrayList<Entity> getForwardlinkEntities() {
+		return forwardlinkEntities;
+	}
+
+	public void setForwardlinkEntities(ArrayList<Entity> forwardlinkEntities) {
+		this.forwardlinkEntities = forwardlinkEntities;
+	}
+
 	public String getPage() {
 		return page;
 	}
