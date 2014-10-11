@@ -69,8 +69,9 @@ public class KeywordExtractor implements Iterable<ArrayList<String>>{
 			if (!items[index].isEmpty()) {
 				if (attr.equals("imonth")) {
 					keywords.add(MONTH_NAME[Integer.parseInt(items[index])]);
+				} else {
+					keywords.add(items[index]);
 				}
-				keywords.add(items[index]);
 			}
 		}
 		for (String attr : TEXT_ATTR) {

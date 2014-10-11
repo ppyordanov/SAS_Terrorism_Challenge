@@ -1,6 +1,6 @@
 import java.io.IOException;
-import java.util.Arrays;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,8 +16,10 @@ public class KeywordExtractorTest {
 	@Test
 	public void test() throws IOException {
 		extractor.extractAllEvents();
-		System.out.println(Arrays.toString(extractor.getKeywords("197001000003").toArray()));
-		System.out.println(Arrays.toString(extractor.getKeywords("197001080001").toArray()));
+		String[] expected1 = {"197001000003", "1970", "January", "Japan", "Fukouka", "U.S. Consulate", "Unknown"};
+		String[] expected2 = {"197001080001", "1970", "January", "Italy", "Rome", "Flight 802 Boeing 707", "Unknown"};
+		Assert.assertArrayEquals(expected1, extractor.getKeywords("197001000003").toArray());
+		Assert.assertArrayEquals(expected2, extractor.getKeywords("197001080001").toArray());
 	}
 
 }
