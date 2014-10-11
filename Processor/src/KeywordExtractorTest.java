@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 
 import org.junit.Before;
@@ -13,9 +14,10 @@ public class KeywordExtractorTest {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws IOException {
 		extractor.extractAllEvents();
-		System.out.println(Arrays.toString(extractor.getKeywords("197001010002").toArray()));
+		System.out.println(Arrays.toString(extractor.getKeywords("197001000003").toArray()));
+		System.out.println(Arrays.toString(extractor.getKeywords("197001080001").toArray()));
 	}
 
 }

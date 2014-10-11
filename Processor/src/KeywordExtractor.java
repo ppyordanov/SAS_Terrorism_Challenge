@@ -1,23 +1,26 @@
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.TreeMap;
 
-public class KeywordExtractor {
-	private static final String[] MONTH_NAME = { "January", "February",
+public class KeywordExtractor implements Iterable<ArrayList<String>>{
+	private static final String[] MONTH_NAME = {"", "January", "February",
 			"March", "April", "May", "June", "July", "August", "September",
 			"October", "November", "December" };
 	private static final String FILENAME = "gtd_tabs.csv";
-	private static final String[] IMPORTANT_ATTR = { "iyear", "imonth",
-			"country", "city", "location", "target1", "gname"};
+	private static final String[] IMPORTANT_ATTR = {"eventid", "iyear", "imonth",
+			"country_txt", "city", "location", "target1", "gname"};
 	private static final String[] TEXT_ATTR = { "summary", "motive", "addnotes" };
 	private static final String DELIMINATOR = "\t";
 	private static final String SAMPLE_EVENT_ID = "197001020002";
 	private TreeMap<String, Integer> attributeIndices;
 	private TreeMap<String, ArrayList<String>> eventKeywords;
 	private TreeMap<String, ArrayList<String>> relatedEvents;
-	private Scanner scanner;
+	private BufferedReader scanner;
 
 	public KeywordExtractor() {
 		this(FILENAME);
@@ -25,7 +28,8 @@ public class KeywordExtractor {
 	
 	public KeywordExtractor(String filename) {
 		try {
-			scanner = new Scanner(new File(filename));
+			System.out.println(filename);
+			scanner = new BufferedReader(new FileReader(filename));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -35,17 +39,17 @@ public class KeywordExtractor {
 		relatedEvents = new TreeMap<String, ArrayList<String>>();
 	}
 
-	public void extractAllEvents() {
-		String[] header = scanner.nextLine().split(DELIMINATOR);
+	public void extractAllEvents() throws IOException {
+		String[] header = scanner.readLine().split(DELIMINATOR);
 		int index = 0;
 		for (String h : header) {
 			attributeIndices.put(h, index++);
 		}
-		for (String line = scanner.nextLine(); scanner.hasNext(); line = scanner
-				.nextLine()) {
+		for (String line = scanner.readLine(); line != null && !line.isEmpty(); line = scanner.readLine().trim()) {
 			ArrayList<String> keywords = new ArrayList<String>();
 			ArrayList<String> events = new ArrayList<String>();
 			String eventId = extractSingleEvent(line, keywords, events);
+//			System.out.println(eventId);
 			eventKeywords.put(eventId, keywords);
 			relatedEvents.put(eventId, events);
 		}
@@ -61,6 +65,7 @@ public class KeywordExtractor {
 				System.err.println("Unexpected attribute " + attr);
 				System.exit(1);
 			}
+			if (index >= items.length) System.err.println(Arrays.toString(items) + " line = " + line);
 			if (!items[index].isEmpty()) {
 				if (attr.equals("imonth")) {
 					keywords.add(MONTH_NAME[Integer.parseInt(items[index])]);
@@ -106,5 +111,10 @@ public class KeywordExtractor {
 	
 	public ArrayList<String> getEvents(String eventId) {
 		return relatedEvents.get(eventId);
+	}
+
+	@Override
+	public Iterator<ArrayList<String>> iterator() {
+		return eventKeywords.values().iterator();
 	}
 }
