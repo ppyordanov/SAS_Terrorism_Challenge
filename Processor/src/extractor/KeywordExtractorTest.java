@@ -1,6 +1,5 @@
 package extractor;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map.Entry;
 
 import org.junit.Assert;
@@ -23,7 +22,6 @@ public class KeywordExtractorTest {
 		String[] expected2 = {"197001080001", "1970", "January", "Italy", "Rome", "Flight 802 Boeing 707"};
 		Assert.assertArrayEquals(expected1, extractor.getKeywords("197001000003").toArray());
 		Assert.assertArrayEquals(expected2, extractor.getKeywords("197001080001").toArray());
-		System.out.println(Arrays.toString(extractor.getKeywords("197003140004").toArray()));
 	}
 	
 	@Test
@@ -54,4 +52,10 @@ public class KeywordExtractorTest {
 			Assert.assertArrayEquals(expected[i], actual[i]);
 	}
 
+	@Test
+	public void testCosineSimilarity() throws IOException {
+		String text = "armstrong armstrong armstrong august bombing bombing notastopword notastopword notastopword notastopword";
+		double expected = (5 * 3 + 2 * 2) / (Math.sqrt(243) * Math.sqrt(13));
+		Assert.assertEquals(expected, extractor.getCosineSimilarity("197001030001", text), 0.0000001);
+	}
 }

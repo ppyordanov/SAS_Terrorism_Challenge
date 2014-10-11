@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -117,7 +118,7 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 		return STOPWORDS_SET.contains(word.toLowerCase());
 	}
 	
-	private void getWordFrequency(String line, TreeMap<String, Integer> freq) {
+	public static void getWordFrequency(String line, TreeMap<String, Integer> freq) {
 		String[] items = line.split("[\\p{P} \\t\\n\\r]");
 		for (int i = 0; i < items.length; ++i) items[i] = items[i].toLowerCase();
 		for (String item : items) {
@@ -206,5 +207,24 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 	@Override
 	public Iterator<ArrayList<String>> iterator() {
 		return eventKeywords.values().iterator();
+	}
+	
+	public double getCosineSimilarity(String eventId, String text) {
+		TreeMap<String, Integer> other = new TreeMap<String, Integer>();
+		getWordFrequency(text, other);
+		double sim = 0;
+		double thisLel = 0;
+		double otherLel = 0;
+		for (Entry<String, Integer> e : this.freqCount.get(eventId).entrySet()) {
+			if (e.getValue() <= 1) continue;
+			thisLel += e.getValue() * e.getValue();
+			Integer otherFreq = other.get(e.getKey());
+			if (otherFreq == null || otherFreq <= 1) continue;
+			otherLel += otherFreq * otherFreq;
+			sim += otherFreq * e.getValue();
+		}
+		thisLel = Math.sqrt(thisLel);
+		otherLel = Math.sqrt(otherLel);
+		return sim / (thisLel * otherLel);
 	}
 }

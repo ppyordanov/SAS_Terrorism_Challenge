@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 public class Crawler {
 
@@ -38,5 +39,7 @@ public class Crawler {
 		return links;
 	}
 	
-
+	public static String getArticleText(String pageTitle) throws IOException {
+		return Jsoup.parse((new Wiki()).getRenderedText(pageTitle)).text();
+	}
 }
