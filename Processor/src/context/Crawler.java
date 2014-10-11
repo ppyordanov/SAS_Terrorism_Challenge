@@ -1,3 +1,4 @@
+package context;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,6 +14,7 @@ public class Crawler {
 
 	public static ArrayList<String> getWikiResults(String keyword)
 			throws IOException, JSONException {
+		System.out.println(">"+keyword);
 		ArrayList<String> results = new ArrayList<String>();
 		ArrayList<String> links = new ArrayList<String>();
 		HttpURLConnection connection = null;
