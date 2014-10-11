@@ -30,19 +30,6 @@ public class TestDatabaseConnector {
        Assert.assertTrue(connection != null);
     }
 
-    @Test
-    public void testStatement() throws SQLException {
-        Statement statement = connection.createStatement();
-        final String sql = "CREATE TABLE IF NOT EXISTS Owner(\n" +
-                "ownerid INTEGER,\n" +
-                "name VARCHAR(32),\n" +
-                "phone VARCHAR(16),\n" +
-                "PRIMARY KEY (ownerid)\n" +
-                ");";
-       boolean res =  statement.execute(sql);
-        Assert.assertTrue(res);
 
-
-    }
 
 }

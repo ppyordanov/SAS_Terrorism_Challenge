@@ -3,6 +3,7 @@ package main.jdbc;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,7 +35,8 @@ public class TableBuilder {
     public static void populateTables() throws IOException, SQLException {
         ArrayList<ArrayList<String>> entries = readDataEntries(DATA_FILE);
         Statement statement = DatabaseConnector.getConnection().createStatement();
-        for (ArrayList<String> entry : entries) {
+        for (int i = 0; i < entries.size(); i++) {
+            ArrayList<String> entry  = entries.get(i);
             String insertQuery = createInsertIntoTableQuery(entry, TABLE_NAME);
             boolean res = statement.execute(insertQuery);
             if (res) {
@@ -102,12 +104,8 @@ public class TableBuilder {
             entry = new ArrayList<String>();
             String[] entryArray = line.split("\t");
             for (int i = 0; i < entryArray.length; i++) {
-
                 entryArray[i] = entryArray[i].replaceAll("\"", " ");
                 entryArray[i] = entryArray[i].replaceAll("\'", " ");
-                if (entryArray[i].contains("Militants")){
-                    boolean ok = true;
-                }
                 entry.add(entryArray[i]);
             }
 
