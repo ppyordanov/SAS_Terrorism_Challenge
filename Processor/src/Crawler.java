@@ -11,11 +11,11 @@ public class Crawler {
 	}
 
 	public static void getWikiResults(ArrayList<String> keywords) throws IOException {
-		for (String keyword : keywords) {
-			Wiki wiki = new Wiki();
-			String s = wiki.getRenderedText(keyword);
-			System.out.println(s);
-		}
+//		for (String keyword : keywords) {
+//			Wiki wiki = new Wiki();
+//			String s = wiki.getRenderedText(keyword);
+//			System.out.println(s);
+//		}
 		
 	}
 
