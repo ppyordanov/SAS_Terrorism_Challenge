@@ -1,11 +1,14 @@
 package graph;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 
 public class Entity {
 
+	private static TreeMap<String, Entity> map = new TreeMap<String, Entity>();
+	
 	private String id;
 	private String page;
 	private ArrayList<Entity> backlinkEntities;
@@ -13,23 +16,40 @@ public class Entity {
 	private ArrayList<String> keywords;
 	private TreeSet<String> categoies;
 	private double weight;
+
+	private ArrayList<EntityPair> similarPages;
 	
+	public static Entity getEntity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
+		if(map.containsKey(id)) return map.get(id);
+		Entity entity = new Entity(id, page, relevantEntities, keywords, weight );
+		map.put(id, entity);
+		return entity;
+	}
 	
-	public Entity(){
+	private Entity(){
 		page = "";
 		keywords = new ArrayList<String>();
 		weight = 0;
 		id = "";
 		this.categoies = new TreeSet<String>();
+		this.similarPages = new ArrayList<EntityPair>();
 	}
 	
-	public Entity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
+	private Entity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
 		this.id = id;
 		this.page = page;
 		this.keywords = keywords;
 		this.weight = weight;
 		this.categoies = new TreeSet<String>();
-		
+		this.similarPages = new ArrayList<EntityPair>();
+	}
+	
+	public ArrayList<EntityPair> getSimilarPages(){
+		return similarPages;
+	}
+	
+	public void addSimilarPage(EntityPair e){
+		similarPages.add(e);
 	}
 	
 	public void addCategory(String category){
