@@ -19,6 +19,7 @@ public class Driver {
 	
 	public static void main(String[] args) throws IOException, JSONException{
 		Wiki wiki = new Wiki();
+		System.out.println(Arrays.toString(wiki.getCategories("Sterling Hall bombing")));
 		KeywordExtractor keywordExtractor = new KeywordExtractor("globalterrorismdb_0814dist.txt");
 		keywordExtractor.extractAllEvents();
 		graph = new Graph();

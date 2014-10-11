@@ -2,9 +2,6 @@ package context;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map.Entry;
 
 import org.json.JSONException;
 import org.junit.Assert;
@@ -13,7 +10,7 @@ import org.junit.Test;
 public class CrawlerTest {
 
 	@Test
-	public void test1() throws IOException, JSONException {
+	public void testPage() throws IOException, JSONException {
 		String keywords = "Dark_Avengers";
 		String[] assertList = { "Dark Avengers", "Dark Avenger",
 				"The Dark Avenger", "Dark Reign (comics)", "Utopia (comics)",
@@ -24,5 +21,5 @@ public class CrawlerTest {
 			Assert.assertTrue(result.get(i).equals(assertList[i]));
 		}
 	}
-
+	
 }
