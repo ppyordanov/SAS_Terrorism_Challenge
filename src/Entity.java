@@ -3,12 +3,12 @@ import java.util.ArrayList;
 
 public class Entity {
 
-	
+	private String id;
 	private String page;
 	private ArrayList<Entity> relevantEntities;
+	private ArrayList<Entity> backlinkEntities;
 	private ArrayList<String> keywords;
 	private double weight;
-	private String id;
 	
 	
 	public Entity(){
@@ -17,6 +17,16 @@ public class Entity {
 		keywords = new ArrayList<String>();
 		weight = 0;
 		id = "";
+	}
+	
+	public Entity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
+		this.id = id;
+		this.page = page;
+		this.relevantEntities = relevantEntities;
+		this.keywords = keywords;
+		this.weight = weight;
+		
+		
 	}
 
 
