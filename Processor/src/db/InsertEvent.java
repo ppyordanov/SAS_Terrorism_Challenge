@@ -28,10 +28,14 @@ public class InsertEvent {
 			title += "_" + word;
 		}
 		String relevent = "";
-		if (e.getSimilarPages() != null)
+		if (e.getSimilarPages() != null) {
 			for (EntityPair s : e.getSimilarPages()) {
 				relevent += "," + s.entity.getId();
 			}
+		} 
+		if (relevent.isEmpty()) {
+			relevent += ",";
+		}
 		try {
 			s.setString(1, e.getId());
 			s.setString(2, e.getPage());
