@@ -1,3 +1,181 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+#
+# Also note: You'll have to insert the output of 'django-admin.py sqlcustom [app_label]'
+# into your database.
+from __future__ import unicode_literals
+
 from django.db import models
 
-# Create your models here.
+
+class DjangoMigrations(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = True
+        db_table = 'django_migrations'
+
+
+class Event(models.Model):
+    eventid = models.TextField(primary_key=True)
+    iyear = models.TextField(blank=True)
+    imonth = models.TextField(blank=True)
+    iday = models.TextField(blank=True)
+    approxdate = models.TextField(blank=True)
+    extended = models.TextField(blank=True)
+    resolution = models.TextField(blank=True)
+    country = models.TextField(blank=True)
+    country_txt = models.TextField(blank=True)
+    region = models.TextField(blank=True)
+    region_txt = models.TextField(blank=True)
+    provstate = models.TextField(blank=True)
+    city = models.TextField(blank=True)
+    latitude = models.TextField(blank=True)
+    longitude = models.TextField(blank=True)
+    specificity = models.TextField(blank=True)
+    vicinity = models.TextField(blank=True)
+    location = models.TextField(blank=True)
+    summary = models.TextField(blank=True)
+    crit1 = models.TextField(blank=True)
+    crit2 = models.TextField(blank=True)
+    crit3 = models.TextField(blank=True)
+    doubtterr = models.TextField(blank=True)
+    alternative = models.TextField(blank=True)
+    alternative_txt = models.TextField(blank=True)
+    multiple = models.TextField(blank=True)
+    success = models.TextField(blank=True)
+    suicide = models.TextField(blank=True)
+    attacktype1 = models.TextField(blank=True)
+    attacktype1_txt = models.TextField(blank=True)
+    attacktype2 = models.TextField(blank=True)
+    attacktype2_txt = models.TextField(blank=True)
+    attacktype3 = models.TextField(blank=True)
+    attacktype3_txt = models.TextField(blank=True)
+    targtype1 = models.TextField(blank=True)
+    targtype1_txt = models.TextField(blank=True)
+    targsubtype1 = models.TextField(blank=True)
+    targsubtype1_txt = models.TextField(blank=True)
+    corp1 = models.TextField(blank=True)
+    target1 = models.TextField(blank=True)
+    natlty1 = models.TextField(blank=True)
+    natlty1_txt = models.TextField(blank=True)
+    targtype2 = models.TextField(blank=True)
+    targtype2_txt = models.TextField(blank=True)
+    targsubtype2 = models.TextField(blank=True)
+    targsubtype2_txt = models.TextField(blank=True)
+    corp2 = models.TextField(blank=True)
+    target2 = models.TextField(blank=True)
+    natlty2 = models.TextField(blank=True)
+    natlty2_txt = models.TextField(blank=True)
+    targtype3 = models.TextField(blank=True)
+    targtype3_txt = models.TextField(blank=True)
+    targsubtype3 = models.TextField(blank=True)
+    targsubtype3_txt = models.TextField(blank=True)
+    corp3 = models.TextField(blank=True)
+    target3 = models.TextField(blank=True)
+    natlty3 = models.TextField(blank=True)
+    natlty3_txt = models.TextField(blank=True)
+    gname = models.TextField(blank=True)
+    gsubname = models.TextField(blank=True)
+    gname2 = models.TextField(blank=True)
+    gsubname2 = models.TextField(blank=True)
+    gname3 = models.TextField(blank=True)
+    gsubname3 = models.TextField(blank=True)
+    motive = models.TextField(blank=True)
+    guncertain1 = models.TextField(blank=True)
+    guncertain2 = models.TextField(blank=True)
+    guncertain3 = models.TextField(blank=True)
+    nperps = models.TextField(blank=True)
+    nperpcap = models.TextField(blank=True)
+    claimed = models.TextField(blank=True)
+    claimmode = models.TextField(blank=True)
+    claimmode_txt = models.TextField(blank=True)
+    claim2 = models.TextField(blank=True)
+    claimmode2 = models.TextField(blank=True)
+    claimmode2_txt = models.TextField(blank=True)
+    claim3 = models.TextField(blank=True)
+    claimmode3 = models.TextField(blank=True)
+    claimmode3_txt = models.TextField(blank=True)
+    compclaim = models.TextField(blank=True)
+    weaptype1 = models.TextField(blank=True)
+    weaptype1_txt = models.TextField(blank=True)
+    weapsubtype1 = models.TextField(blank=True)
+    weapsubtype1_txt = models.TextField(blank=True)
+    weaptype2 = models.TextField(blank=True)
+    weaptype2_txt = models.TextField(blank=True)
+    weapsubtype2 = models.TextField(blank=True)
+    weapsubtype2_txt = models.TextField(blank=True)
+    weaptype3 = models.TextField(blank=True)
+    weaptype3_txt = models.TextField(blank=True)
+    weapsubtype3 = models.TextField(blank=True)
+    weapsubtype3_txt = models.TextField(blank=True)
+    weaptype4 = models.TextField(blank=True)
+    weaptype4_txt = models.TextField(blank=True)
+    weapsubtype4 = models.TextField(blank=True)
+    weapsubtype4_txt = models.TextField(blank=True)
+    weapdetail = models.TextField(blank=True)
+    nkill = models.TextField(blank=True)
+    nkillus = models.TextField(blank=True)
+    nkillter = models.TextField(blank=True)
+    nwound = models.TextField(blank=True)
+    nwoundus = models.TextField(blank=True)
+    nwoundte = models.TextField(blank=True)
+    property = models.TextField(blank=True)
+    propextent = models.TextField(blank=True)
+    propextent_txt = models.TextField(blank=True)
+    propvalue = models.TextField(blank=True)
+    propcomment = models.TextField(blank=True)
+    ishostkid = models.TextField(blank=True)
+    nhostkid = models.TextField(blank=True)
+    nhostkidus = models.TextField(blank=True)
+    nhours = models.TextField(blank=True)
+    ndays = models.TextField(blank=True)
+    divert = models.TextField(blank=True)
+    kidhijcountry = models.TextField(blank=True)
+    ransom = models.TextField(blank=True)
+    ransomamt = models.TextField(blank=True)
+    ransomamtus = models.TextField(blank=True)
+    ransompaid = models.TextField(blank=True)
+    ransompaidus = models.TextField(blank=True)
+    ransomnote = models.TextField(blank=True)
+    hostkidoutcome = models.TextField(blank=True)
+    hostkidoutcome_txt = models.TextField(blank=True)
+    nreleased = models.TextField(blank=True)
+    addnotes = models.TextField(blank=True)
+    scite1 = models.TextField(blank=True)
+    scite2 = models.TextField(blank=True)
+    scite3 = models.TextField(blank=True)
+    dbsource = models.TextField(blank=True)
+    int_log = models.TextField(blank=True)
+    int_ideo = models.TextField(blank=True)
+    int_misc = models.TextField(blank=True)
+    int_any = models.TextField(blank=True)
+    related = models.TextField(blank=True)
+
+    class Meta:
+        managed = True
+        db_table = 'event'
+
+
+class Wikievent(models.Model):
+    eventid = models.TextField(primary_key=True)
+    title = models.TextField(blank=True)
+    url = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+    parents = models.TextField(blank=True)
+    children = models.TextField(blank=True)
+    third = models.TextField(blank=True)
+    eventdate = models.TextField(blank=True)
+    lat = models.TextField(blank=True)
+    lon = models.TextField(blank=True)
+
+    class Meta:
+        managed = True
+        db_table = 'wikievent'
