@@ -14,7 +14,7 @@ public class Process implements Runnable{
 
 	@Override
 	public void run() {
-		int tc = 0;
+//		int tc = 0;
 		ArrayList<String> keyword;
 		while ((keyword=Driver.queue.poll())!=null) {
 			String query = "";

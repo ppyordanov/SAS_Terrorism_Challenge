@@ -104,6 +104,7 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 		for (String h : header) {
 			attributeIndices.put(h, index++);
 		}
+		int count = 0;
 		for (String line = scanner.readLine(); line != null && !line.isEmpty(); line = scanner
 				.readLine().trim()) {
 			ArrayList<String> keywords = new ArrayList<String>();
@@ -115,7 +116,9 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 			relatedEvents.put(eventId, events);
 			freqCount.put(eventId, freq);
 			Entity e = Entity.getEntity(keywords.get(0), "", null, null, 0.0);
+			++count;
 		}
+		System.out.println("Scanned " + count + " lines from the input file.");
 		scanner.close();
 	}
 
