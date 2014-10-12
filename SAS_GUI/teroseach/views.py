@@ -24,7 +24,8 @@ def result(request):
     wikiTitle = key_words_extractor(message)
     results = []
     context_dic = {"msg": wikiTitle,
-                   "results" : results                   
+                   "results" : results,
+                   "message" : message                 
                    }
     
     event = Wikievent.objects.filter(title = wikiTitle).all()
