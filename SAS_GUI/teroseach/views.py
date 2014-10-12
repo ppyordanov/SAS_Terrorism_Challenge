@@ -2,16 +2,13 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 import json
-
 from django.http import HttpResponse
-
 import urllib2
 
-
+from teroseach.models import Wikievent
 
 def index(request):
     return HttpResponse("OK")
-
 
 def search(request):
     context = RequestContext(request)
@@ -24,8 +21,28 @@ def result(request):
 
         message = request.GET['search']
 
+    wikiTitle = key_words_extractor(message)
+    results = []
+    context_dic = {"msg": wikiTitle,
+                   "results" : results                   
+                   }
+    
+    event = Wikievent.objects.filter(title = wikiTitle).all()
+    if (len(event) == 0):
+        return render(request,'result.html', context_dic)
+    
+    parentIds = event[0].parents.split(',')
         
-    context_dic = {"msg": key_words_extractor(message)}
+    
+    for id in parentIds:
+        dic = {}
+        event = Wikievent.objects.filter(eventid = id).all()[0]
+        dic['id'] =  event.eventid
+        dic['title'] = event.title
+        dic['url'] = event.url
+        results.append(dic)
+    
+    
     return render(request,'result.html', context_dic)
 
 def about(request):
@@ -55,9 +72,7 @@ def key_words_extractor(query):
     decoded = json.loads(jsonStr)
 
     title = decoded['query']['search'][0]['title']
-    print "TITLEEEE " + title
-    return "Wiki Title " + title
-
+    return title
 
 
 STOPWORDS = ["", "a", "about", "above",
