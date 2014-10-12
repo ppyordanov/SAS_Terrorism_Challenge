@@ -5,8 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("KURAAAACCC")
-
+    return HttpResponse("OK")
 
 def search(request):
     context = RequestContext(request)
@@ -22,3 +21,8 @@ def result(request):
         
     context_dic = {"msg": message}
     return render(request,'result.html', context_dic)
+	
+def about(request):
+    context = RequestContext(request)
+    return render_to_response('about.html', context)
+
