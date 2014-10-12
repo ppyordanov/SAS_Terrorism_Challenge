@@ -5,7 +5,7 @@ import graph.Graph;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.json.JSONException;
 
@@ -16,14 +16,14 @@ public class Driver{
 	public static Graph graph;
 	public static KeywordExtractor keywordExtractor;
 	public static Wiki wiki;
-	public static LinkedBlockingQueue<ArrayList<String>> queue;
+	public static ConcurrentLinkedQueue<ArrayList<String>> queue;
 
 	public static void main(String[] args) throws IOException, JSONException {
 		wiki = new Wiki();
 		keywordExtractor = new KeywordExtractor("globalterrorismdb_0814dist.txt");
 		keywordExtractor.extractAllEvents();
 		graph = new Graph();
-		queue = new LinkedBlockingQueue<ArrayList<String>>();
+		queue = new ConcurrentLinkedQueue<ArrayList<String>>();
 		for (ArrayList<String> keyword : keywordExtractor) {
 			queue.add(keyword);
 		}
