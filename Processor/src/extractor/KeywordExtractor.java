@@ -111,13 +111,18 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 			ArrayList<String> keywords = new ArrayList<String>();
 			ArrayList<String> events = new ArrayList<String>();
 			TreeMap<String, Integer> freq = new TreeMap<String, Integer>();
-			String eventId = extractSingleEvent(line, keywords, events, freq);
+			try {
+				String eventId = extractSingleEvent(line, keywords, events, freq);
+				eventKeywords.put(eventId, keywords);
+				relatedEvents.put(eventId, events);
+				freqCount.put(eventId, freq);
+				Entity e = Entity.getEntity(keywords.get(0), "", null, null, 0.0);
+				++count;
+			} catch(Exception e) {
+				continue;
+			}
 			// System.out.println(eventId);
-			eventKeywords.put(eventId, keywords);
-			relatedEvents.put(eventId, events);
-			freqCount.put(eventId, freq);
-			Entity e = Entity.getEntity(keywords.get(0), "", null, null, 0.0);
-			++count;
+			
 		}
 		System.out.println("Scanned " + count + " lines from the input file.");
 		scanner.close();
@@ -156,7 +161,8 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 				System.err.println(Arrays.toString(items) + " line = " + line);
 			if (!items[index].isEmpty()) {
 				if (attr.equals("imonth")) {
-					keywords.add(MONTH_NAME[Integer.parseInt(items[index])]);
+						keywords.add(MONTH_NAME[Integer.parseInt(items[index])]);
+					
 				} else if (!isStopWord(items[index])) {
 					keywords.add(items[index]);
 				}
