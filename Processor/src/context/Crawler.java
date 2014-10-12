@@ -6,6 +6,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,5 +64,35 @@ public class Crawler {
 		
 		return Jsoup.parse(text).text();
 //		return Jsoup.parse((new Wiki()).getRenderedText(pageTitle)).text();
+	}
+	
+	public static Set<String> getAdjacentArticles(String pageTitle) {
+		Set<String> neighbours = new TreeSet<String>();
+		Wiki wiki = new Wiki();
+		try {
+			neighbours.addAll(Arrays.asList(wiki.whatLinksHere(pageTitle, Wiki.MAIN_NAMESPACE)));
+			neighbours.addAll(Arrays.asList(wiki.getLinksOnPage(pageTitle)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return neighbours;
+	}
+	
+	public static Set<String> getSetIntersection(Set<String> a, Set<String> b) {
+		if (a == null || b == null) return new TreeSet<String>();
+		Set<String> res = new TreeSet<String>(a);
+		res.retainAll(b);
+		return res;
+	}
+	
+	public static Set<String> getMostRelatedArticles(String pageTitle) {
+		Set<String> neighs = Crawler.getAdjacentArticles(pageTitle);
+		Set<String> results = null;
+		try {
+			results = new TreeSet<String>(Crawler.getWikiResults(pageTitle));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return Crawler.getSetIntersection(neighs, results);
 	}
 }

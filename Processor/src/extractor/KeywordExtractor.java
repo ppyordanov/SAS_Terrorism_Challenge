@@ -1,5 +1,7 @@
 package extractor;
 
+import graph.Entity;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,6 +12,8 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+import context.Crawler;
 
 public class KeywordExtractor implements Iterable<ArrayList<String>> {
 	private static final String[] MONTH_NAME = { "", "January", "February",
@@ -210,12 +214,21 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 	}
 	
 	public double getCosineSimilarity(String eventId, String text) {
+		Entity entity = Entity.getEntity(eventId, null, null, null, 0.0);
+		String thisText = "";
+		try {
+			thisText = Crawler.getArticleText(entity.getPage());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		TreeMap<String, Integer> thisFreqCount = new TreeMap<String, Integer>();
 		TreeMap<String, Integer> other = new TreeMap<String, Integer>();
+		getWordFrequency(thisText, thisFreqCount);
 		getWordFrequency(text, other);
 		double sim = 0;
 		double thisLel = 0;
 		double otherLel = 0;
-		for (Entry<String, Integer> e : this.freqCount.get(eventId).entrySet()) {
+		for (Entry<String, Integer> e : thisFreqCount.entrySet()) {
 			if (e.getValue() <= 0) continue;
 			thisLel += e.getValue() * e.getValue();
 			Integer otherFreq = other.get(e.getKey());
@@ -225,6 +238,6 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 		}
 		thisLel = Math.sqrt(thisLel);
 		otherLel = Math.sqrt(otherLel);
-		return sim / (thisLel * otherLel);
+		return (thisLel == 0 || otherLel == 0) ? 0 : sim / (thisLel * otherLel);
 	}
 }
