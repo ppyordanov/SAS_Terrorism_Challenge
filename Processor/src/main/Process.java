@@ -73,7 +73,7 @@ public class Process implements Runnable{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if(++tc > 5)break;
+//			if(++tc > 5)break;
 		}
 	}
 
