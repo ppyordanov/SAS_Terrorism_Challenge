@@ -1,7 +1,7 @@
-package test.jdbc;
+package jdbc;
 
 import org.junit.Assert;
-import main.jdbc.DatabaseConnector;
+import jdbc.DatabaseConnector;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
