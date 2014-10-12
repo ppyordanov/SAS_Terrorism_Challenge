@@ -4,6 +4,7 @@ import graph.Entity;
 import graph.EntityPair;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import context.Crawler;
@@ -13,7 +14,7 @@ public class Process implements Runnable{
 
 	@Override
 	public void run() {
-//		int tc = 0;
+		int tc = 0;
 		ArrayList<String> keyword;
 		while ((keyword=Driver.queue.poll())!=null) {
 			String query = "";
@@ -72,7 +73,7 @@ public class Process implements Runnable{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-//			if(++tc > 5)break;
+			if(++tc > 5)break;
 		}
 	}
 
