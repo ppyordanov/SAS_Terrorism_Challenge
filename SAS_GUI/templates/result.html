@@ -4,7 +4,36 @@
 
 {% endblock %}
 {% block body_block %}
-<div class="result center">
-		Results {{ msg }}
-</div>
+
+	<div class="result">
+		<h4>Results {{ msg }}</h4>
+	</div>
+
+
+		<!-- crsf token -->
+
+		<div class="result">
+
+			<h5>Title</h5>
+
+			<p>
+
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+			</p>
+
+			<span>
+					map
+
+			</span>
+
+			<br>
+
+			<input type="submit" id="search" class="btn_search btn-lg btn btn-success" value="Rate Up" />
+			<input type="submit" id="search" class="btn_search btn-lg btn btn-danger" value="Rate Down" />
+
+
+
+		</div>
+
 {% endblock %}

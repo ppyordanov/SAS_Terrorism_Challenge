@@ -17,6 +17,11 @@ def result(request):
     
     if 'search' in request.GET:
         message = 'You searched for: ' + request.GET['search']
+
+        #event_data = event.objects
+        #event_data = event_data[0]
+
+
     else:
         message = 'You submitted an empty form.'
         
