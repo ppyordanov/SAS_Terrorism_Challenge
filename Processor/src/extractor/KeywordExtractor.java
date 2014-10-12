@@ -114,6 +114,7 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 			eventKeywords.put(eventId, keywords);
 			relatedEvents.put(eventId, events);
 			freqCount.put(eventId, freq);
+			Entity e = Entity.getEntity(keywords.get(0), "", null, null, 0.0);
 		}
 		scanner.close();
 	}

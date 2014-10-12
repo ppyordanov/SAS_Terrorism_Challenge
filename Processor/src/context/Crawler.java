@@ -64,7 +64,6 @@ public class Crawler {
 					.readLine()) {
 				text += line;
 			}
-			System.out.println("Done with " + url.getPath());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

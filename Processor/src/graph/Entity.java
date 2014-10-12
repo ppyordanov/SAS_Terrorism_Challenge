@@ -1,6 +1,7 @@
 package graph;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -21,8 +22,14 @@ public class Entity {
 	private ArrayList<EntityPair> similarPages;
 	
 	public static Entity getEntity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
-		if(map.containsKey(id)) return map.get(id);
-		Entity entity = new Entity(id, page, relevantEntities, keywords, weight );
+		Entity entity = map.get(id);
+		if(entity != null) {
+			if (entity.page == null || entity.page.isEmpty()) {
+				entity.page = page;
+			}
+			return map.get(id);
+		}
+		entity = new Entity(id, page, null, null, weight );
 		map.put(id, entity);
 		return entity;
 	}
@@ -46,6 +53,7 @@ public class Entity {
 	}
 	
 	public ArrayList<EntityPair> getSimilarPages(){
+		Collections.sort(similarPages);
 		return similarPages;
 	}
 	

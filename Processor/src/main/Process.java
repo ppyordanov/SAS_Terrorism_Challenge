@@ -4,6 +4,7 @@ import graph.Entity;
 import graph.EntityPair;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 
 import context.Crawler;
@@ -28,10 +29,10 @@ public class Process implements Runnable{
 			String pageTitle = res.get(0);
 			System.err.println(id);
 			Entity entity = Entity.getEntity(id, pageTitle,
-					new ArrayList<Entity>(), keyword, 0.0);
+					null, null, 0.0);
 			try {
-				String[] categories = Driver.wiki.getCategories(pageTitle);
-				if (categories != null && categories.length > 0)
+				ArrayList<String> categories = Crawler.getCategories(pageTitle);
+				if (categories != null && categories.size() > 0)
 					for (String category : categories)
 						entity.addCategory(category);
 				Driver.graph.addData(entity);
@@ -48,10 +49,15 @@ public class Process implements Runnable{
 //				for (String s : after)
 //					neighbours.add(s);
 				int count = 0;
+				System.out.println("entity=" + Arrays.toString(entity.getCategories().toArray()));
+				for (String eventId : Driver.keywordExtractor.getEvents(id)) {
+					entity.addSimilarPage(new EntityPair(Entity.getEntity(eventId, null, null, null, 0.0), 1.0));
+				}
 				for (String s : neighbours) {
 					Entity e = Entity.getEntity(s, s, new ArrayList<Entity>(),
 							new ArrayList<String>(), 0.0);
 					ArrayList<String> al =  Crawler.getCategories(s);
+					System.out.println(Arrays.toString(al.toArray()));
 					String[] c = new String[al.size()];
 					for(int i=0; i<c.length; i++) c[i] = al.get(i);
 					if (c != null && c.length > 0)
@@ -61,8 +67,9 @@ public class Process implements Runnable{
 							.calculateJacard(entity.getCategories(),
 									e.getCategories())
 							+ Driver.keywordExtractor.getCosineSimilarity(id,
-									Crawler.getArticleText(s)) * 0.17));
-					if (++count >= 20) break;
+									Crawler.getArticleText(s)) * 0.1
+					));
+					if (++count >= 15) break;
 				}
 				System.out.println(entity);
 				System.exit(0);
