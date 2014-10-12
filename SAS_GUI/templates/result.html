@@ -41,6 +41,7 @@
 
 			<br>
 
+			<a href="#" class="btn btn-default btn-lg active" role="button">39</a>
 			<input type="submit" id="search" class="btn_search btn-lg btn btn-success" value="Rate Up" />
 			<input type="submit" id="search" class="btn_search btn-lg btn btn-danger" value="Rate Down" />
 
@@ -52,9 +53,9 @@
 	<div class="result" style="height:30px; background-color:#d3d7d9">
 		<h4>Related Events</h4>
 	</div>
-			{% if results %}
-			{% for result in results %}
-				
+
+
+
 				<div class="result" style="background-color:#d3d7d9" >
 
 			<h5>{{result.title}}</h5>
@@ -75,11 +76,12 @@
 			</div>
 
 			<br>
-			
-			<a href="{{result.url}}" class="btn btn-default btn-lg active" role="button">{{ result.url }}</a>
+
+			<a href="http://en.wikipedia.org/wiki/Terrorism" class="btn btn-default btn-lg active" role="button">http://en.wikipedia.org/wiki/Terrorism</a>
 
 			<br><br>
 
+			<a href="#" class="btn btn-default btn-lg active" role="button">39</a>
 			<input type="submit" id="search" class="btn_search btn-lg btn btn-success" value="Rate Up" />
 			<input type="submit" id="search" class="btn_search btn-lg btn btn-danger" value="Rate Down" />
 
@@ -87,14 +89,6 @@
 
 		</div>
 
-				
-			{% endfor %}
-			{% else %}
-			<strong>No results to be displayed.</strong>
-			{% endif %}
-
-
-				
 
 
 
