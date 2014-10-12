@@ -27,9 +27,10 @@ public class Driver{
 		for (ArrayList<String> keyword : keywordExtractor) {
 			queue.add(keyword);
 		}
-		for(int i=0; i<100; i++){
-			new Thread(new Process()).start();;
-		}
+		new Process().run();
+//		for(int i=0; i<100; i++){
+//			new Thread(new Process()).start();;
+//		}
 	}
 
 

@@ -73,6 +73,47 @@ public class Crawler {
 		// return Jsoup.parse((new Wiki()).getRenderedText(pageTitle)).text();
 	}
 	
+	public static ArrayList<String> getCategories(String pageTitle){
+		ArrayList<String> a = new ArrayList<String>();
+		String title = "";
+		for (String word : pageTitle.split(" ")) {
+			title += "_" + word;
+		}
+		URL url;
+		try {
+			url = new URL("http://en.wikipedia.org/wiki/" + title.substring(1));
+			URLConnection connection = null;
+			String text = "";
+			connection = url.openConnection();
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					connection.getInputStream()));
+			for (String line = br.readLine(); line != null; line = br
+					.readLine()) {
+				text += line;
+			}
+			int curr = 0;
+			String pattern = "<a href=\"/wiki/Category:";
+			int next = text.indexOf(pattern, curr);
+			String ref = "";
+			while(next > 0){
+				for(int i=next + pattern.length(); i<text.length(); i++){
+					char c = text.charAt(i);
+					if(c=='"'){
+						a.add(ref);
+						ref = "";
+						break;
+					}
+					ref += c;
+				}
+				curr = next + 1;
+				next = text.indexOf(pattern,curr);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
+	
 	public static Set<String> getAdjacentArticles(String pageTitle) {
 		Set<String> neighbours = new TreeSet<String>();
 		Wiki wiki = new Wiki();
