@@ -51,7 +51,11 @@ public class Driver{
 		System.out.println("size is"+Driver.graph.graph.size());
 		for(Entry<String, Entity> e: Entity.map.entrySet()){
 //			System.out.println(e.getKey());
-			Driver.db.Insert(e.getValue());
+			try {
+				Driver.db.Insert(e.getValue());
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 

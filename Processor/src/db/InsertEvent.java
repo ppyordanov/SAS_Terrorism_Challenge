@@ -23,6 +23,7 @@ public class InsertEvent {
 	}
 	
 	public static void Insert(Entity e) {
+		if (e == null || e.getPage() == null || e.getPage().isEmpty()) return;
 		String title = "";
 		for (String word : e.getPage().split(" ")) {
 			title += "_" + word;
