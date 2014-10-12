@@ -20,14 +20,14 @@ public class Driver{
 
 	public static void main(String[] args) throws IOException, JSONException {
 		wiki = new Wiki();
-		keywordExtractor = new KeywordExtractor("globalterrorismdb_0814dist.txt");
+		keywordExtractor = new KeywordExtractor("gtd_tabs.csv");
 		keywordExtractor.extractAllEvents();
 		graph = new Graph();
 		queue = new ConcurrentLinkedQueue<ArrayList<String>>();
 		for (ArrayList<String> keyword : keywordExtractor) {
 			queue.add(keyword);
 		}
-		for(int i=0; i<100; i++){
+		for(int i=0; i<1; i++){
 			new Thread(new Process()).start();;
 		}
 	}

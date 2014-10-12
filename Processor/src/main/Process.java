@@ -4,6 +4,7 @@ import graph.Entity;
 import graph.EntityPair;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import context.Crawler;
 import context.Stats;
@@ -35,28 +36,36 @@ public class Process implements Runnable{
 					for (String category : categories)
 						entity.addCategory(category);
 				Driver.graph.addData(entity);
-				ArrayList<String> neighbours = new ArrayList<String>();
-				// String[] before = wiki
-				// .whatLinksHere(pageTitle, Wiki.MAIN_NAMESPACE);
-				// for (String s : before)
-				// neighbours.add(s);
-				String[] after = Driver.wiki.getLinksOnPage(pageTitle);
-				for (String s : after)
-					neighbours.add(s);
+				Set<String> bestRelated = Crawler.getMostRelatedArticles(pageTitle);
+				ArrayList<String> neighbours = new ArrayList<String>(bestRelated);
+				Set<String> adj = Crawler.getAdjacentArticles(pageTitle);
+				adj.removeAll(neighbours);
+				neighbours.addAll(adj);
+//				 String[] before = wiki
+//				 .whatLinksHere(pageTitle, Wiki.MAIN_NAMESPACE);
+//				 for (String s : before)
+//				 neighbours.add(s);
+//				String[] after = Driver.wiki.getLinksOnPage(pageTitle);
+//				for (String s : after)
+//					neighbours.add(s);
+				int count = 0;
 				for (String s : neighbours) {
 					Entity e = Entity.getEntity(s, s, new ArrayList<Entity>(),
 							new ArrayList<String>(), 0.0);
-					String[] c = Driver.wiki.getCategories(s);
-					if (c != null && c.length > 0)
-						for (String s1 : c)
-							e.addCategory(s1);
+//					String[] c = Driver.wiki.getCategories(s);
+//					if (c != null && c.length > 0)
+//						for (String s1 : c)
+//							e.addCategory(s1);
 					// Weight = Jackard + cos similarity
 					entity.addSimilarPage(new EntityPair(e, Stats
 							.calculateJacard(entity.getCategories(),
 									e.getCategories())
 							+ Driver.keywordExtractor.getCosineSimilarity(id,
 									Crawler.getArticleText(s)) * 0.17));
+					if (++count >= 50) break;
 				}
+				System.out.println(entity);
+				System.exit(0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

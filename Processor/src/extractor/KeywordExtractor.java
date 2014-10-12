@@ -216,6 +216,7 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 	public double getCosineSimilarity(String eventId, String text) {
 		Entity entity = Entity.getEntity(eventId, null, null, null, 0.0);
 		String thisText = "";
+		
 		try {
 			thisText = Crawler.getArticleText(entity.getPage());
 		} catch (IOException e1) {
