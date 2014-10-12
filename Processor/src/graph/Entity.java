@@ -17,6 +17,7 @@ public class Entity {
 	private TreeSet<String> categoies;
 	private double weight;
 
+	//TODO: SortedList
 	private ArrayList<EntityPair> similarPages;
 	
 	public static Entity getEntity(String id, String page, ArrayList<Entity> relevantEntities, ArrayList<String> keywords, double weight ){
