@@ -15,7 +15,6 @@ public class Process implements Runnable{
 	public void run() {
 		ArrayList<String> keyword;
 		while ((keyword=Driver.queue.poll())!=null) {
-//			ArrayList<String> keyword = queue.poll();
 			String query = "";
 			for (int j = 1; j < keyword.size(); j++) {
 				if (keyword.get(j).isEmpty())
@@ -52,17 +51,18 @@ public class Process implements Runnable{
 				for (String s : neighbours) {
 					Entity e = Entity.getEntity(s, s, new ArrayList<Entity>(),
 							new ArrayList<String>(), 0.0);
-//					String[] c = Driver.wiki.getCategories(s);
-//					if (c != null && c.length > 0)
-//						for (String s1 : c)
-//							e.addCategory(s1);
-					// Weight = Jackard + cos similarity
+					ArrayList<String> al =  Crawler.getCategories(s);
+					String[] c = new String[al.size()];
+					for(int i=0; i<c.length; i++) c[i] = al.get(i);
+					if (c != null && c.length > 0)
+						for (String s1 : c)
+							e.addCategory(s1);
 					entity.addSimilarPage(new EntityPair(e, Stats
 							.calculateJacard(entity.getCategories(),
 									e.getCategories())
 							+ Driver.keywordExtractor.getCosineSimilarity(id,
 									Crawler.getArticleText(s)) * 0.17));
-					if (++count >= 50) break;
+					if (++count >= 20) break;
 				}
 				System.out.println(entity);
 				System.exit(0);
