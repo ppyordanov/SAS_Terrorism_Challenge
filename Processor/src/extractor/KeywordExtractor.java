@@ -105,8 +105,9 @@ public class KeywordExtractor implements Iterable<ArrayList<String>> {
 			attributeIndices.put(h, index++);
 		}
 		int count = 0;
-		for (String line = scanner.readLine(); line != null && !line.isEmpty(); line = scanner
-				.readLine().trim()) {
+		for (String line = scanner.readLine(); line != null; line = scanner
+				.readLine()) {
+			if (line.trim().isEmpty()) continue;
 			ArrayList<String> keywords = new ArrayList<String>();
 			ArrayList<String> events = new ArrayList<String>();
 			TreeMap<String, Integer> freq = new TreeMap<String, Integer>();
