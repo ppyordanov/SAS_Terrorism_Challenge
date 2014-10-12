@@ -36,7 +36,11 @@ def result(request):
     
     for id in parentIds:
         dic = {}
-        event = Wikievent.objects.filter(eventid = id).all()[0]
+        dsfdsf = Wikievent.objects.filter(eventid = id).all()
+        if (len(dsfdsf) == 0):
+            return render(request,'result.html', context_dic)
+        event = dsfdsf[0]
+        #event = Wikievent.objects.filter(title = wikiTitle).all()[0]
         dic['id'] =  event.eventid
         dic['title'] = event.title
         dic['url'] = event.url
