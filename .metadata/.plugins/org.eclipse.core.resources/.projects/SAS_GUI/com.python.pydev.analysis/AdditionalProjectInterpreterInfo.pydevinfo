@@ -10,6 +10,7 @@ SAS_GUI.wsgi|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\wsgi.py
 SAS_GUI.urls|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\urls.py
 teroseach.views|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\views.py
 teroseach.models|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\models.py
+teroseach.forms|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\forms.py
 manage|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\manage.py
 SAS_GUI.settings|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\SAS_GUI\settings.py
 teroseach.__init__|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\__init__.py
@@ -22,10 +23,11 @@ teroseach.__init__|0|C:\Users\antonbelev\Desktop\GUHack\SAS_GUI\teroseach\__init
 1=SAS_GUI.settings
 -- END DICTIONARY
 -- START TREE 1
-21
+23
 all|1|ALLOWED_HOSTS!11@
 app|1|application!19@
 bas|1|BASE_DIR!11@
+cat|0|
 dat|1|DATABASES!11@
 deb|1|DEBUG!11@
 ind|1|index!26@
@@ -34,6 +36,7 @@ lan|1|LANGUAGE_CODE!11@
 med|1|MEDIA_URL!11@
 mid|1|MIDDLEWARE_CLASSES!11@
 pro|1|PROJECT_PATH!11@
+res|1|result!26@
 roo|1|ROOT_URLCONF!11@
 sea|1|search!26@
 sec|1|SECRET_KEY!11@
@@ -46,5 +49,10 @@ use|3|USE_I18N!11@USE_L10N!11@USE_TZ!11@
 wsg|1|WSGI_APPLICATION!11@
 -- END TREE
 -- START TREE 2
-0
+5
+lik|0|
+met|0|
+mod|0|
+nam|0|
+vie|0|
 -- END TREE

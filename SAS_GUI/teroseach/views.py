@@ -11,3 +11,14 @@ def index(request):
 def search(request):
     context = RequestContext(request)
     return render_to_response('search.html', context)
+
+def result(request):
+    context = RequestContext(request)
+    
+    if 'search' in request.GET:
+        message = 'You searched for: ' + request.GET['search']
+    else:
+        message = 'You submitted an empty form.'
+        
+    context_dic = {"msg": message}
+    return render(request,'result.html', context_dic)

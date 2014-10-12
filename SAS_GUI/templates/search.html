@@ -4,12 +4,28 @@
 
 {% endblock %}
 {% block body_block %}
-<div class="main-panel">
+<div class="main-panel center">
 	
 	<div class="input-group">
       <span class="input-group-btn">
-      	<input type="text" id="txt_search" class="txt_search" />
-        <input type="button" id="search" class="btn_search btn-lg btn btn-primary" value="Search" />
+      	<form id="search_form" method="get" action="/search/results/">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+
+            <input type="text" name="search" id="search" class="search" />
+        	<input type="submit" id="search" class="btn_search btn-lg btn btn-primary" value="Search" />
+        
+        </form>
+        
       </span>      
     </div>
 </div>
