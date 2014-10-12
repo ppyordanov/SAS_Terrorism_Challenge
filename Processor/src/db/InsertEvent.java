@@ -14,6 +14,7 @@ public class InsertEvent {
 			"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	static PreparedStatement s;
 	public InsertEvent() {
+		con = DBConnections.getConnection();
 		try {
 			s = con.prepareStatement(insertSQL);
 		} catch (SQLException e1) {
@@ -27,9 +28,10 @@ public class InsertEvent {
 			title += "_" + word;
 		}
 		String relevent = "";
-		for (EntityPair s : e.getSimilarPages()) {
-			relevent += "," + s.entity.getId();
-		}
+		if (e.getSimilarPages() != null)
+			for (EntityPair s : e.getSimilarPages()) {
+				relevent += "," + s.entity.getId();
+			}
 		try {
 			s.setString(1, e.getId());
 			s.setString(2, e.getPage());
@@ -41,6 +43,7 @@ public class InsertEvent {
 			s.setString(8, "");
 			s.setString(9, "");
 			s.setString(10, "");
+			s.execute();
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		}

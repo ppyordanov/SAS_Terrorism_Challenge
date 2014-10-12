@@ -6,7 +6,7 @@ import java.util.TreeMap;
  */
 public class Graph {
 
-	private TreeMap<String, Entity> graph;
+	public TreeMap<String, Entity> graph;
 
 	/**
 	 * creates a new instance of Graph with n vertices

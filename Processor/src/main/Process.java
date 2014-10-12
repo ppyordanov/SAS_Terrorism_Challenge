@@ -4,7 +4,6 @@ import graph.Entity;
 import graph.EntityPair;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Set;
 
 import context.Crawler;
@@ -14,6 +13,7 @@ public class Process implements Runnable{
 
 	@Override
 	public void run() {
+//		int tc = 0;
 		ArrayList<String> keyword;
 		while ((keyword=Driver.queue.poll())!=null) {
 			String query = "";
@@ -26,8 +26,8 @@ public class Process implements Runnable{
 			query = query.replaceAll(" ", "+");
 			ArrayList<String> res = Crawler.getWikiResults(query);
 			String id = keyword.get(0);
+			if(res ==null || res.isEmpty()) break;
 			String pageTitle = res.get(0);
-			System.err.println(id);
 			Entity entity = Entity.getEntity(id, pageTitle,
 					null, null, 0.0);
 			try {
@@ -49,7 +49,6 @@ public class Process implements Runnable{
 //				for (String s : after)
 //					neighbours.add(s);
 				int count = 0;
-				System.out.println("entity=" + Arrays.toString(entity.getCategories().toArray()));
 				for (String eventId : Driver.keywordExtractor.getEvents(id)) {
 					entity.addSimilarPage(new EntityPair(Entity.getEntity(eventId, null, null, null, 0.0), 1.0));
 				}
@@ -57,7 +56,6 @@ public class Process implements Runnable{
 					Entity e = Entity.getEntity(s, s, new ArrayList<Entity>(),
 							new ArrayList<String>(), 0.0);
 					ArrayList<String> al =  Crawler.getCategories(s);
-					System.out.println(Arrays.toString(al.toArray()));
 					String[] c = new String[al.size()];
 					for(int i=0; i<c.length; i++) c[i] = al.get(i);
 					if (c != null && c.length > 0)
@@ -71,12 +69,10 @@ public class Process implements Runnable{
 					));
 					if (++count >= 15) break;
 				}
-				System.out.println(entity);
-				System.exit(0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("Processed "+pageTitle);
+//			if(++tc > 5)break;
 		}
 	}
 

@@ -8,7 +8,7 @@ import java.util.TreeSet;
 
 public class Entity {
 
-	private static TreeMap<String, Entity> map = new TreeMap<String, Entity>();
+	public static TreeMap<String, Entity> map = new TreeMap<String, Entity>();
 	
 	private String id;
 	private String page;
@@ -132,11 +132,11 @@ public class Entity {
 	@Override
 	public String toString(){
 		String s = "";
-		s += id + " " + page + " " + Arrays.toString(keywords.toArray()) + " {";
-		for (EntityPair p : similarPages) {
-			s += p.similarity + " <- " + p.entity.page + "\n";
-		}
-		s += "}";
+//		s += id + " " + page + " " + Arrays.toString(keywords.toArray()) + " {";
+//		for (EntityPair p : similarPages) {
+//			s += p.similarity + " <- " + p.entity.page + "\n";
+//		}
+//		s += "}";
 		return s;
 	}
 	
